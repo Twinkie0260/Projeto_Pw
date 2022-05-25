@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('Marca');
-            $table->string('Modelo');
-            $table->date('Ano');
-            $table->timestamps();
-        });
+        $table->id();
+        $table->integer('cep',8);
+        $table->integer('rg',8);
+        $table->integer('telefone',11);
+        /*chave estrangeira*/
+
+        $table->unsignedBigInteger('user_id');
+        $table->foreign('user_id')->references('id')->on('users');
+
+        $table->timestamps();
     }
 
     /**
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('client');
     }
 };
