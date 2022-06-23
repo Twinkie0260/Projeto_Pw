@@ -13,16 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        $table->id();
-        $table->integer('cep',8);
-        $table->integer('rg',8);
-        $table->integer('telefone',11);
-        /*chave estrangeira*/
+        Schema::create('perfil', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome'); 
+            $table->string('email'); 
+            $table->string('senha'); 
+            $table->string('CEP'); 
+            $table->string('numeroCasa'); 
+        }); 
 
-        $table->unsignedBigInteger('user_id');
-        $table->foreign('user_id')->references('id')->on('users');
 
-        $table->timestamps();
     }
 
     /**
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client');
+        Schema::dropIfExists('perfil');
     }
 };
